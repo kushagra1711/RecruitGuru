@@ -1,0 +1,35 @@
+@import url(template.css);
+
+h1{
+    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2rem;
+}
+
+h3{
+    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+}
+
+.smthin{
+    width: 60%;
+    padding-top:5rem;
+}
+
+button{
+    background-color: #dbf5f0;
+    padding:1rem 3rem;
+
+    border-radius: 0.625em;
+    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.name{
+    color:#A4E5E0;
+}
+
+.name1{
+    color:#0C6170;
+}
