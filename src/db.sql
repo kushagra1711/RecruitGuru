@@ -1,6 +1,15 @@
+DROP TABLE user;
+DROP TABLE student;
+DROP TABLE student_interest;
+DROP TABLE club;
+DROP TABLE clublisting;
+DROP TABLE answers;
+DROP TABLE registered_club;
+DROP TABLE club_domain;
+
 CREATE TABLE IF NOT EXISTS user (
     user_id varchar(32),
-    password varchar(64),
+    password varchar(32),
     type varchar(15),
     
     CONSTRAINT pkey PRIMARY KEY(user_id)
@@ -54,7 +63,7 @@ CREATE TABLE IF NOT EXISTS  answers(
 );
 
 -- create table in sql to register students and club theyve registered in
-CREATE TABLE IF NOT EXISTS registerd_club(
+CREATE TABLE IF NOT EXISTS registered_club(
     user_id varchar(32),
     name varchar(32),
     regno varchar(9),
