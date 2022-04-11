@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-$conn = mysqli_connect("localhost", "root", "", "my_db");
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-$club = "SELECT * FROM club";
-$cd = "SELECT * FROM club_domain";
-$result = mysqli_query($conn, $club);
-$result1 = mysqli_query($conn, $cd);
-$result = mysqli_query($conn, $sql);
-
-?>
 
 <head>
   
@@ -86,6 +73,10 @@ $result = mysqli_query($conn, $sql);
                 <div class="apply"><a href="www.tailus.io" class="block w-max text-cyan-600">Read more</a></div>
               </div>
             </div>
+
+
+
+            
     </center>
   </div>
   </div>

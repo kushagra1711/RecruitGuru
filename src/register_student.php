@@ -46,6 +46,10 @@
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter User ID" name="userid">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">password</label>
+                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password" name="password">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">First Name</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name" name="firstname">
                     </div>
@@ -75,16 +79,28 @@
         if(isset($_POST['submit'])){
             $userid = $_POST['userid'];
             $firstname = $_POST['firstname'];
+            $password = md5($_POST['password']);
             $lastname = $_POST['lastname'];
             $regno = $_POST['regno'];
             $age = $_POST['age'];
             $yearofstudy = $_POST['yearofstudy'];
 
-            $sql = "INSERT INTO student (user_id, fname, lname, regno, age, year_of_study) VALUES ('$userid', '$firstname', '$lastname', '$regno', '$age', '$yearofstudy')";
-            if(mysqli_query($conn, $sql)){
-                echo "Records inserted successfully.";
-            } else{
-                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+            $usr="INSERT INTO user (user_id, password, type) VALUES ('$userid', '$password', 'student' )";
+            if(mysqli_query($conn, $usr))
+            {
+                $sql = "INSERT INTO student (user_id, fname, lname, regno, age, year_of_study) VALUES ('$userid', '$firstname', '$lastname', '$regno', '$age', '$yearofstudy')";
+                if(mysqli_query($conn, $sql))
+                {
+                    echo "Records inserted successfully.";
+                }
+                else
+                {
+                    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+                }
+            }
+            else
+            {
+                echo "ERROR: Could not able to execute $usr. " . mysqli_error($conn);
             }
         }
     ?>
