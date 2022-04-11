@@ -3,7 +3,7 @@
 
 
 <head>
-  
+
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=ed ge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,38 +45,56 @@
 
           <div class="grid gap-12 lg:grid-cols-3">
 
+            <?php
+            $conn = mysqli_connect("localhost", "root", "", "my_db");
+            if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+            }
+            $sql = "SELECT * FROM CLUB ";
+            $result = mysqli_query($conn, $sql);
+            $count = mysqli_num_rows($result);
+
+            while ($k = mysqli_fetch_array($result)) {
+              extract($k);
+
+              // $sql2= "SELECT * FROM CLUB_DOMAIN, CLUB WHERE CLUB.USER_ID = CLUB_DOMAIN.USER_ID";
+              // $result2  = mysqli_query($conn, $sql2);
 
 
+            ?>
 
-            <div class="pl-1 rounded-xl group sm:flex flex-col space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl">
-              <div class="sm:flex flex-row">
-                <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG" alt="art cover" loading="lazy" width="1000" height="667" class="h-36 mt-5 ml-5 sm:h-half w-half sm:w-5/12 object-cover object-center rounded-lg">
-                <div class="sm:w-7/12 pt-5 pr-5 pl-5">
-                  <div class="space-y-2">
-                    <div class="space-y-4">
-                      <div class="alignment">
-                        <h4 class="clubName">club name</h4>
-                        <div class="dom">
-                          <h6 class="domains">Management</h6>
-                          <h6 class="domains">Management</h6>
-                          <h6 class="domains">Management</h6>
+
+              <div class="pl-1 rounded-xl group sm:flex flex-col space-x-6 bg-white bg-opacity-50 shadow-xl hover:rounded-2xl">
+                <div class="sm:flex flex-row">
+                  <img src="<?= $linkforimage ?>  " alt="art cover" loading="lazy" width="1000" height="667" class="h-36 mt-5 ml-5 sm:h-half w-half sm:w-5/12 object-cover object-center rounded-lg">
+                  <div class="sm:w-7/12 pt-5 pr-5 pl-5">
+                    <div class="space-y-2">
+                      <div class="space-y-4">
+                        <div class="alignment">:
+                          <h4 class="clubName"><?= $name ?></h4>
+                          <div class="dom">
+
+                            <h6 class="domains">Management</h6>
+
+
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="m-6">
+                  <p class="description"><?= $description ?></p>
+                  <br><br>
+                  <div class="apply"><a href="www.tailus.io" class="block w-max text-cyan-600">Read more</a></div>
+                </div>
               </div>
-              <div class="m-6">
-                <p class="description">Laborum saepe laudantium in, voluptates ex placeat quo harum aliquam
-                  totam, doloribus eum impedit atque! Temporibus...</p>
-                <br><br>
-                <div class="apply"><a href="www.tailus.io" class="block w-max text-cyan-600">Read more</a></div>
-              </div>
-            </div>
 
 
+            <?php
+            }
+            ?>
 
-            
     </center>
   </div>
   </div>

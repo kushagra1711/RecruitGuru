@@ -74,3 +74,6 @@ INSERT INTO user VALUES(
     '76d6deb2417bd6dc7952790e87610f84',
     'team'
 );
+
+
+INSERT INTO `club` (`user_id`, `name`, `num_events`, `regno`, `linkforimage`, `description`) VALUES ('VinnovateIT', 'VinnovateIT', '2', 'VITOP', 'https://vinnythebot.netlify.app/assets/BotLogo.png', 'VinnovateIT is the official innovation and incubation lab of SITE School, VIT Vellore.\r\n\r\nTo put it simply....we are the answer to the question \"What if Elon Musk and Albert Einstein had a brain child?\"');
