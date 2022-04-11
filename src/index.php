@@ -16,7 +16,7 @@
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/template.css" />
-  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
@@ -39,7 +39,6 @@
       </div>
     </nav>
   </div>
-  <center>
     <div class="smthin">
       <h1>Welcome to {<span class="name">RecruitGuru</span>}</h1>
       <br />
@@ -53,14 +52,12 @@
         <span class="name1"> technical, management and design</span> domains
         <span class="name"> easier</span>.
       </h3>
-    </div>
     <br><br>
 
 
     <a href="login.php"><button class="sign-in">Sign In</button></a>
-
-  </center>
-  <footer>
+    </div>
+    <footer>
     <div class="footer">
       <p class="made">Made by Dhruv, Kushagra and Prashant</p>
     </div>
