@@ -1,32 +1,32 @@
 @import url(template.css);
 
-h1{
-    font-family: 'IBM Plex Mono', monospace;
+h1 {
+    font-family: "IBM Plex Mono", monospace;
     font-size: 4rem;
 }
 
-h3{
-    font-family: 'IBM Plex Mono', monospace;
+h3 {
+    font-family: "IBM Plex Mono", monospace;
     font-size: 3rem;
 }
 
-.smthin{
+.smthin {
     width: 65%;
-    padding-top:7rem;
+    padding-top: 7rem;
 }
 
-button{
+button {
     background-color: #dbf5f0;
-    padding:1rem 3rem;
+    padding: 1rem 3rem;
 
     border-radius: 0.625em;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
 }
 
-.name{
-    color:#A4E5E0;
+.name {
+    color: #a4e5e0;
 }
 
-.name1{
-    color:#0C6170;
+.name1 {
+    color: #0c6170;
 }
