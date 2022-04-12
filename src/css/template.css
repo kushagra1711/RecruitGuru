@@ -6,7 +6,6 @@
     .navbarz {
       background-color: #A4E5E0;
       font-family: 'IBM Plex Mono', monospace;
-      font-family: 'Roboto Mono', monospace;
       font-size: 1.6rem;
       padding-left: .5rem ;
       padding-right: .5rem ;
@@ -22,12 +21,10 @@
       width: 100%;
       text-align: center;
       font-family: 'IBM Plex Mono', monospace;
-      font-family: 'Roboto Mono', monospace;
     }
 
     .mainlogoname{
       font-family: 'IBM Plex Mono', monospace;
-      font-family: 'Roboto Mono', monospace;
       font-size: 2rem;
       letter-spacing: 0.5rem;
       padding-right:0.5rem;
