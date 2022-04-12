@@ -50,16 +50,19 @@
             if (!$conn) {
               die("Connection failed: " . mysqli_connect_error());
             }
-            $sql = "SELECT * FROM CLUB ";
+            $sql = "SELECT * FROM club ";
             $result = mysqli_query($conn, $sql);
             $count = mysqli_num_rows($result);
+
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
 
             while ($k = mysqli_fetch_array($result)) {
               extract($k);
 
-              // $sql2= "SELECT * FROM CLUB_DOMAIN, CLUB WHERE CLUB.USER_ID = CLUB_DOMAIN.USER_ID";
-              // $result2  = mysqli_query($conn, $sql2);
-
+              $escaped = mysqli_real_escape_string($conn, $user_id);
+              $domain = "SELECT * FROM club_domain WHERE user_id = '$escaped' ORDER BY domain_offering";
+              $result2 = mysqli_query($conn, $domain);
 
             ?>
 
@@ -73,9 +76,14 @@
                         <div class="alignment">:
                           <h4 class="clubName"><?= $name ?></h4>
                           <div class="dom">
-
-                            <h6 class="domains">Management</h6>
-
+                            <?php
+                            while ($domain = mysqli_fetch_assoc($result2)) {
+                              $domain = $domain['domain_offering'];
+                            ?>
+                              <h6 class="domains"><?= $domain ?></h6>
+                            <?php
+                            }
+                            ?>
 
                           </div>
                         </div>
