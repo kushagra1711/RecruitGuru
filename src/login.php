@@ -87,7 +87,7 @@
                                         $result = mysqli_query($conn, $query);
                                         if (mysqli_num_rows($result) == 1) {
 
-                                            echo("<script>window.location.href = 'populate.php';</script>");
+                                            echo ("<script>window.location.href = 'populate.php';</script>");
                                             exit();
                                         } else {
                                             echo '<p class="text-center">Username or password is incorrect</p>';
