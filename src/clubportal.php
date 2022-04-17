@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="navbarz">
+    <!-- <div class="navbarz">
         <nav class="navbar navbar-expand-lg navbar-light navbarz">
             <a class="navbar-brand" href="#"> <span class="mainlogoname"> RecruitGuru</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,11 +27,74 @@
                 </ul>
             </div>
         </nav>
-    </div>
+    </div> -->
+    <?php include "./navbar-template.php";
 
-    <button>Show Registrations</button>
-    <button>Remove Club Listing</button>
-    <button>Show Answers of student Registration Number:</button>
+
+
+    $conn = mysqli_connect("localhost", "root", "", "my_db");
+    $username = $_SESSION['username'];
+    $username = mysqli_real_escape_string($conn,    $username);
+    $query = "SELECT COUNT(*) FROM club WHERE user_id = '$username'";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_fetch_array($result)[0] < 1) {
+        die(header("Location: login.php"));
+    }
+    mysqli_close($conn);
+
+    ?>
+
+
+    <form id="showRegistrations" action="clubportal.php" method="post">
+        <input type="hidden" name="doShowRegs" hidden>
+        <input type="submit" value="Show Registrations">
+    </form>
+    <!-- create a table showing all the registrations -->
+
+    <form id="removeClub" action="clubportal.php" method="post">
+        <input type="hidden" name="doRemove" hidden>
+        <input type="submit" value="Delete club">
+    </form>
+    <!-- remove the club from club domains,club and user -->
+
+    <?php
+    if (isset($_POST['doShowRegs'])) {
+        $conn = mysqli_connect("localhost", "root", "", "my_db");
+        $name = $_SESSION['name'];
+        $name = mysqli_real_escape_string($conn, $name);
+        $query = "SELECT * FROM registered_club WHERE name = '$name'";
+        $result = mysqli_query($conn, $query);
+        $result_assoc = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        echo "<style>table, th, td { border: 2px solid black; padding: 2px; } </style>";
+        echo "<table>"; // <----------------------------------------------------
+        echo "<tr><th>Student name</th><th>Register number</th></tr>";
+        foreach ($result_assoc as $student) {
+            $name = mysqli_real_escape_string($conn, $student['user_id']);
+            $query2 = "SELECT fname, lname FROM student WHERE user_id = '$name'";
+            $result2 = mysqli_query($conn, $query2);
+            $result2_assoc = mysqli_fetch_assoc($result2);
+            $stuname = $result2_assoc['fname'] . " " . $result2_assoc['lname'];
+            $regno = $student['regno'];
+            echo "<tr><td>$stuname</td><td>$regno</td></tr>";
+        }
+        echo "</table>";
+    } else if (isset($_POST['doRemove'])) {
+        $removed = $_SESSION['username'];
+    ?>
+        <form action="club-delete.php" method="POST" id="removalForm">
+            <input hidden name="theRemoved" value="<?= $removed ?>">
+            <input hidden name="userInput" id="theUserInput">
+        </form>
+        <script>
+            result = window.prompt("Are you sure you want to delete the club? Enter the name <?= $removed ?> to proceed.");
+            document.getElementById("theUserInput").value = result;
+            document.getElementById("removalForm").submit();
+        </script>
+    <?php
+    }
+    ?>
+
+    <button>Show Results</button>
 </body>
 
 </html>
