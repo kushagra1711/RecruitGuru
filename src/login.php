@@ -14,6 +14,12 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    if (isset($_SESSION['username'])) {
+        die(header("Location: populate.php"));
+    }
+    ?>
     <div class="navbarz">
         <nav class="navbar navbar-expand-lg navbar-light navbarz">
             <a class="navbar-brand" href="#"> <span class="mainlogoname"> RecruitGuru</span></a>
@@ -31,70 +37,46 @@
     </div>
 
     <!--create signup form -->
-    <form action="login.php" method="post">
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-login">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <a href="#" class="active" id="login-form-link">Login</a>
-                                </div>
-                                <div class="col-xs-6">
-                                    <a href="#" id="register-form-link">Register</a>
-                                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a href="#" class="active" id="login-form-link">Login</a>
                             </div>
-                            <hr>
+                            <div class="col-xs-6">
+                                <a href="#" id="register-form-link">Register</a>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form id="login-form" action="login.php" method="post" role="form" style="display: block;">
-                                        <div class="form-group">
-                                            <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-                                        </div>
-                                        <div class="form-group text-center">
-                                            <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                            <label for="remember"> Remember Me</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-                                                </div>
+                        <hr>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form id="login-form" action="auth-redirect.php" method="post" role="form" style="display: block;">
+                                    <div class="form-group">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
                                             </div>
                                         </div>
-
-                                    </form>
-
-
-                                    <?php
-
-                                    // mysqli_select_db($conn,"my_db");
-
-
-                                    if (isset($_POST['login-submit'])) {
-                                        $conn = mysqli_connect("localhost", "root", "", "my_db");
-                                        $username = $_POST['username'];
-                                        $password = md5($_POST['password']);
-                                        $query = "SELECT * FROM user WHERE user_id = '$username' AND password = '$password'";
-                                        $result = mysqli_query($conn, $query);
-                                        if (mysqli_num_rows($result) == 1) {
-
-                                            echo ("<script>window.location.href = 'populate.php';</script>");
-                                            exit();
-                                        } else {
-                                            echo '<p class="text-center">Username or password is incorrect</p>';
-                                        }
-                                    }
-                                    ?>
-
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
