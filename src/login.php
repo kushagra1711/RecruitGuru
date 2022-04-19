@@ -22,12 +22,14 @@
         $username = mysqli_real_escape_string($conn, $username);
         $query = "SELECT * FROM user WHERE user_id = '$username'";
         $result = mysqli_query($conn, $query);
-        $result_assoc = mysqli_fetch_assoc($result);
-        $type = $result_assoc['type'];
-        if ($type == "student") {
-            die(header("Location: populate.php"));
-        } else {
-            die(header("Location: clubportal.php"));
+        if (mysqli_num_rows($result) > 0) {
+            $result_assoc = mysqli_fetch_assoc($result);
+            $type = $result_assoc['type'];
+            if ($type == "student") {
+                die(header("Location: populate.php"));
+            } else {
+                die(header("Location: clubportal.php"));
+            }
         }
     }
     ?>

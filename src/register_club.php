@@ -45,6 +45,14 @@
                             <div class="col-lg-12">
                                 <form id="login-form" action="register_club.php" method="post" role="form" style="display: block;">
                                     <div class="form-group">
+                                        <label for="type">Type</label>
+                                        <select name="type" required>
+                                            <option value="club" default>Club</option>
+                                            <option value="chapter">Chapter</option>
+                                            <option value="team">Team</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
                                     <div class="form-group">
@@ -101,10 +109,11 @@ if (isset($_POST['reg-club-submit'])) {
     $registration_number = $_POST['registration_number'];
     $description = $_POST['description'];
     $image = $_POST['image'];
-    $usr = "INSERT INTO user (user_id, password, type) VALUES ('$username', '$password', 'student' )";
+    $type = $_POST['type'];
+    $usr = "INSERT INTO user (user_id, password, type) VALUES ('$username', '$password', '$type' )";
 
     if (mysqli_query($conn, $usr)) {
-        $club = "INSERT INTO club (user_id, name, num_events, regno, linkforimage, description) VALUES ('$username', '$name_club', '$numberofevents', '$registration_number', '$description', '$image')";
+        $club = "INSERT INTO club (user_id, name, num_events, regno, linkforimage, description) VALUES ('$username', '$name_club', '$numberofevents', '$registration_number', '$image', '$description')";
         if (mysqli_query($conn, $club)) {
             echo "Successfully registered";
         } else {
