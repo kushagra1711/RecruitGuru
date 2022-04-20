@@ -6,7 +6,7 @@
 
 <head>
     <title>
-        Document
+        RecruitGuru
     </title>
 </head>
 
