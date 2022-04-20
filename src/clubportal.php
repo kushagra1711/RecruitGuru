@@ -77,14 +77,16 @@
         $conn = mysqli_connect("localhost", "root", "", "my_db");
         $name = $_SESSION['name'];
         $name = mysqli_real_escape_string($conn, $name);
-        $query = "SELECT * FROM registered_club WHERE name = '$name'";
+        $query = "SELECT * FROM answers WHERE name = '$name'";
         $result = mysqli_query($conn, $query);
         $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        echo "<table><tr><th>User id</th><th>Register number</th></tr>";
+        echo "<table><tr><th>Register number</th><th>Answer 1</th><th>Answer 2</th><th>Answer 3</th></tr>";
         foreach ($results as $r) {
-            $uid = $r['user_id'];
-            $regno = $r['regno'];
-            echo "<tr><td>$uid</td><td>$regno</td></tr>";
+            $name = $r['name'];
+            $a1 = $r['answer1'];
+            $a2 = $r['answer2'];
+            $a3 = $r['answer3'];
+            echo "<tr><td>$name</td><td>$a1</td><td>$a2</td><td>$a3</td></tr>";
         }
         echo "</table>";
     }

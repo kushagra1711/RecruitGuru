@@ -59,12 +59,21 @@
         $username = $_SESSION['username'];
         $username = mysqli_real_escape_string($conn, $username);
 
+        $answer1 = $_POST['answer1'];
+        $answer1 = mysqli_real_escape_string($conn, $answer1);
+        $answer2 = $_POST['answer2'];
+        $answer2 = mysqli_real_escape_string($conn, $answer2);
+        $answer3 = $_POST['answer3'];
+        $answer3 = mysqli_real_escape_string($conn, $answer3);
+
         $query = "INSERT INTO answers (name, regno, answer1, answer2, answer3) VALUES ('$name','$regno','$answer1', '$answer2', '$answer3')";
         $query2 = "INSERT INTO registered_club (user_id, name, regno) VALUES ('$username', '$name', '$regno')";
 
-        if (mysqli_query($conn, $query) && mysqli_query($conn, $query2)) {
+        if (mysqli_query($conn, $query2) && mysqli_query($conn, $query)) {
             echo "<script>alert('You have Successfully applied for $name')</script>";
             die(header("Location: populate.php"));
+        } else {
+            echo "Unable to apply for club: " . mysqli_error($conn) . "<br>";
         }
     }
     ?>
