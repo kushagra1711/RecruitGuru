@@ -11,6 +11,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/template.css">
+    <style>
+        .containers {
+            width: 50%;
+            text-align: center;
+            align-items: center;
+            margin-top: 3%;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -32,76 +41,59 @@
 
 
     <!-- register form  -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-login">
-                    <div class="panel-heading">
-
-                        <hr>
+    <center>
+        <div class="containers">
+            <center>
+                <form id="login-form" action="register_club.php" method="post" role="form" style="display: block;">
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select name="type" required>
+                            <option value="club" default>Club</option>
+                            <option value="chapter">Chapter</option>
+                            <option value="team">Team</option>
+                        </select>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <form id="login-form" action="register_club.php" method="post" role="form" style="display: block;">
-                                    <div class="form-group">
-                                        <label for="type">Type</label>
-                                        <select name="type" required>
-                                            <option value="club" default>Club</option>
-                                            <option value="chapter">Chapter</option>
-                                            <option value="team">Team</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="name_club" name="name_club" id="name_club" tabindex="2" class="form-control" placeholder="Name of the Club" required>
-                                    </div>
-                                    <!-- take inputs for numberofevents,registeration number,description-->
-                                    <div class="form-group">
-                                        <input type="number" name="numberofevents" id="numberofevents" tabindex="2" class="form-control" placeholder="Number of Events" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="number" name="registration_number" id="registration_number" tabindex="2" class="form-control" placeholder="Registration Number" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="description" id="description" tabindex="2" class="form-control" placeholder="Description" required></textarea>
-                                    </div>
-
-                                    <!-- take input of image as url-->
-                                    <div class="form-group">
-                                        <input type="url" name="image" id="image" tabindex="2" class="form-control" placeholder="Image" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        Domain
-                                        <input type="checkbox" name="design" id="design" tabindex="2" value="design">
-                                        <label for="design">Design</label>
-                                        <input type="checkbox" name="management" id="management" tabindex="2" value="management">
-                                        <label for="management">Management</label>
-                                        <input type="checkbox" name="technical" id="technical" tabindex="2" value="technical">
-                                        <label for="technical">Technical</label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="reg-club-submit" id="eg-club-submit" tabindex="4" class="form-control btn btn-login" value="Register">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="name_club" name="name_club" id="name_club" tabindex="2" class="form-control" placeholder="Name of the Club" required>
+                    </div>
+                    <!-- take inputs for numberofevents,registeration number,description-->
+                    <div class="form-group">
+                        <input type="number" name="numberofevents" id="numberofevents" tabindex="2" class="form-control" placeholder="Number of Events" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="registration_number" id="registration_number" tabindex="2" class="form-control" placeholder="Registration Number" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" id="description" tabindex="2" class="form-control" placeholder="Description" required></textarea>
+                    </div>
+
+                    <!-- take input of image as url-->
+                    <div class="form-group">
+                        <input type="url" name="image" id="image" tabindex="2" class="form-control" placeholder="Image" required>
+                    </div>
+
+                    <div class="form-group">
+                        Domains Recruiting:
+                        <br>
+                        <input type="checkbox" name="design" id="design" tabindex="2" value="design">
+                        <label for="design">Design</label>
+                        <input type="checkbox" name="management" id="management" tabindex="2" value="management">
+                        <label for="management">Management</label>
+                        <input type="checkbox" name="technical" id="technical" tabindex="2" value="technical">
+                        <label for="technical">Technical</label>
+                    </div>
+                    <br>
+                    <input type="submit" style="background-color: #a4e5e0; color: azure; padding: 5px; border-radius: 5px; font-family: ' IBM Plex Mono', monospace; font-size: 1rem;" name="reg-club-submit" id="eg-club-submit" value="Register">
+                </form>
+            </center>
         </div>
-    </div>
+    </center>
 
 
 </body>
