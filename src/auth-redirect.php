@@ -49,6 +49,18 @@
             echo '<p class="text-center">Username or password is incorrect</p>';
         }
     }
+
+    if(isset($_POST["apply-club"]))
+    {
+        $conn=mysqli_connect("localhost","root","","my_db");
+        $username=$_SESSION['username'];
+        $clubname=$_POST["clubname"];
+        $_SESSION['clubname']=$clubname;
+        if($_SESSION['clubname'])
+        {
+            die(header("Location: apply.php"));
+        }
+    }
     ?>
 </body>
 

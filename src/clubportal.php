@@ -66,8 +66,8 @@
         $result = mysqli_query($conn, $query);
         $result_assoc = mysqli_fetch_all($result, MYSQLI_ASSOC);
         echo "<style>table, th, td { border: 2px solid black; padding: 2px; } </style>";
-        echo "<table>"; // <----------------------------------------------------
-        echo "<tr><th>Student name</th><th>Register number</th></tr>";
+        echo "<table class='table-sm table-bordered table-hover'>"; // <----------------------------------------------------
+        echo "<tr><th scope='col'>Student name</th><th scope='col'>Register number</th></tr>";
         foreach ($result_assoc as $student) {
             $name = mysqli_real_escape_string($conn, $student['user_id']);
             $query2 = "SELECT fname, lname FROM student WHERE user_id = '$name'";

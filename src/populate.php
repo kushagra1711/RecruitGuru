@@ -49,6 +49,7 @@
               $escaped = mysqli_real_escape_string($conn, $user_id);
               $domain = "SELECT * FROM club_domain WHERE user_id = '$escaped' ORDER BY domain_offering";
               $result2 = mysqli_query($conn, $domain);
+              $jkl = $name;
 
             ?>
 
@@ -59,7 +60,7 @@
                   <div class="sm:w-7/12 pt-5 pr-5 pl-5">
                     <div class="space-y-2">
                       <div class="space-y-4">
-                        <div class="alignment">:
+                        <div class="alignment">
                           <h4 class="clubName"><?= $name ?></h4>
                           <div class="dom">
                             <?php
@@ -80,7 +81,10 @@
                 <div class="m-6">
                   <p class="description"><?= $description ?></p>
                   <br><br>
-                  <div class="apply"><a href="www.tailus.io" class="block w-max text-cyan-600">Read more</a></div>
+                  <form action="post" action="auth-redirect.php">
+                    <div class="apply" name="apply-club"><a href="apply.php" class="block w-max text-cyan-600"> Apply </a></div>
+                    <input type="hidden" name="clubname" value="<?php $name; ?>" hidden>
+                  </form>
                 </div>
               </div>
 
