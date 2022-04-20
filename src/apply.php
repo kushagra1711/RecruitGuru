@@ -19,7 +19,7 @@
     ?>
 
     <!-- print 3 text inputs with questions and a submit button -->
-    <form id="createClub" action="clubportal.php" method="post">
+    <form id="applyClub" action="apply.php" method="post">
 
         <p><?php echo "Question 1"; ?></p>
         <input type="text" name="answer1" id="answer1">
@@ -28,17 +28,27 @@
         <p><?php echo "Question 3"; ?></p>
         <input type="text" name="answer3" id="answer3">
 
-        <input type="submit" value="apply">
+        <input type="submit" value="apply" name='applied'>
 
     </form>
 
     <?php
+    if (isset($_POST['applied'])) {
+        $conn = mysqli_connect("localhost", "root", "", "my_db");
+        $name = $_SESSION['clubname'];
+        $name = mysqli_real_escape_string($conn, $name);
+        $regno = $_SESSION['regno'];
+        $regno = mysqli_real_escape_string($conn, $regno);
+        $username = $_SESSION['username'];
+        $username = mysqli_real_escape_string($conn, $username);
+        $query = "insert into answers (name,regno,answer1, answer2, answer3) values ('$name','$regno','$answer1', '$answer2', '$answer3')";
+        $query2 = "insert into registered_club (user_id, name, regno) values ('$username', '$name', '$regno')";
 
-    $conn = mysqli_connect("localhost", "root", "", "my_db");
-    $name = $_SESSION('username');
-    $name = mysqli_real_escape_string($conn, $name);
-    $query = "insert into answers (name,regno,answer1, answer2, answer3) values (name,regno,'$answer1', '$answer2', '$answer3')";
-    $query2 = "insert into registered_club (user_id, name, regno) values ('$name', '$club_id', '$regno')";
+        if (mysqli_query($conn, $query) && mysqli_query($conn, $query2)) {
+
+            echo "<script>alert('You have Successfully applied for $name')</script>";
+        }
+    }
     ?>
 
 

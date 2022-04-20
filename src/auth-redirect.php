@@ -35,6 +35,7 @@
                 $_SESSION['name'] = $result_assoc['fname'] . " " . $result_assoc['lname'];
                 $_SESSION['fname'] = $result_assoc['fname'];
                 $_SESSION['lname'] = $result_assoc['lname'];
+                $_SESSION['regno'] = $result_assoc['regno'];
 
                 die(header("Location: populate.php"));
             } else {
@@ -48,18 +49,9 @@
         } else {
             echo '<p class="text-center">Username or password is incorrect</p>';
         }
-    }
-
-    if(isset($_POST["apply-club"]))
-    {
-        $conn=mysqli_connect("localhost","root","","my_db");
-        $username=$_SESSION['username'];
-        $clubname=$_POST["clubname"];
-        $_SESSION['clubname']=$clubname;
-        if($_SESSION['clubname'])
-        {
-            die(header("Location: apply.php"));
-        }
+    } else if (isset($_POST["apply-club"]) && isset($_SESSION['name'])) {
+        $_SESSION['clubname'] = $_POST['clubname'];
+        die(header("Location: apply.php"));
     }
     ?>
 </body>
