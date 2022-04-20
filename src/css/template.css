@@ -7,7 +7,6 @@ padding: 40PX;
 display: flex;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 margin-top: 40px;
-
 }
 #rop{
     padding-left: 30px;
@@ -57,4 +56,14 @@ margin-top: 40px;
     font-size: 2rem;
     letter-spacing: 0.5rem;
     padding-right: 0.5rem;
+}
+.btn-primary{
+    background-color: #a4e5e0 !important;
+    padding-left: 10px;
+}
+.btn-primary:hover{
+    border-color: #0d6efd;
+}
+.col-md-6{
+    margin-left: 20%;
 }
