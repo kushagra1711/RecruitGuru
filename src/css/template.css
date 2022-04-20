@@ -2,7 +2,36 @@
 * {
     user-select: none;
 }
+.rowm{
+padding: 40PX;
+display: flex;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+margin-top: 40px;
 
+}
+#rop{
+    padding-left: 30px;
+   
+}
+
+.col-md-offset-3{
+    flex-basis: 55%;
+   
+}
+.col-sm-offset-3{
+    background-color: #a4e5e0;
+    border-radius: 5%;
+}
+.col-lg-12{
+    padding: 20px;
+}
+.panel-login{
+    padding: 0px;
+    margin-left: 70%;
+}
+.form-group{
+    padding: 10px;
+}
 .navbarz {
     background-color: #a4e5e0;
     font-family: "IBM Plex Mono", monospace;
