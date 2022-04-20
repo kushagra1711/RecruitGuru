@@ -14,35 +14,7 @@
 </head>
 
 <body>
-    <!-- <div class="navbarz">
-        <nav class="navbar navbar-expand-lg navbar-light navbarz">
-            <a class="navbar-brand" href="#"> <span class="mainlogoname"> RecruitGuru</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li><a class="nav-link nav-item" href="#">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a class="nav-link nav-item" href="#">Link</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div> -->
-    <?php include "./navbar-template.php";
-
-
-
-    $conn = mysqli_connect("localhost", "root", "", "my_db");
-    $username = $_SESSION['username'];
-    $username = mysqli_real_escape_string($conn,    $username);
-    $query = "SELECT COUNT(*) FROM club WHERE user_id = '$username'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_fetch_array($result)[0] < 1) {
-        die(header("Location: login.php"));
-    }
-    mysqli_close($conn);
-
-    ?>
+    <?php include "./auth-club.php"; ?>
 
 
     <form id="showRegistrations" action="clubportal.php" method="post">
@@ -57,6 +29,16 @@
     </form>
     <!-- remove the club from club domains,club and user -->
 
+    <form id="showResults" action="clubportal.php" method="post">
+        <input type="hidden" name="doShowResults" hidden>
+        <input type="submit" value="Show Results">
+    </form>
+
+    <form id="editQuestions" action="club-edit.php" method="post">
+        <input type="hidden" name="doEditQuestions" hidden>
+        <input type="submit" value="Edit Questions">
+    </form>
+
     <?php
     if (isset($_POST['doShowRegs'])) {
         $conn = mysqli_connect("localhost", "root", "", "my_db");
@@ -66,7 +48,7 @@
         $result = mysqli_query($conn, $query);
         $result_assoc = mysqli_fetch_all($result, MYSQLI_ASSOC);
         echo "<style>table, th, td { border: 2px solid black; padding: 2px; } </style>";
-        echo "<table class='table-sm table-bordered table-hover'>"; // <----------------------------------------------------
+        echo "<table class='table-sm table-bordered table-hover'>";
         echo "<tr><th scope='col'>Student name</th><th scope='col'>Register number</th></tr>";
         foreach ($result_assoc as $student) {
             $name = mysqli_real_escape_string($conn, $student['user_id']);
@@ -91,10 +73,22 @@
             document.getElementById("removalForm").submit();
         </script>
     <?php
+    } else if (isset($_POST['doShowResults'])) {
+        $conn = mysqli_connect("localhost", "root", "", "my_db");
+        $name = $_SESSION['name'];
+        $name = mysqli_real_escape_string($conn, $name);
+        $query = "SELECT * FROM registered_club WHERE name = '$name'";
+        $result = mysqli_query($conn, $query);
+        $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        echo "<table><tr><th>User id</th><th>Register number</th></tr>";
+        foreach ($results as $r) {
+            $uid = $r['user_id'];
+            $regno = $r['regno'];
+            echo "<tr><td>$uid</td><td>$regno</td></tr>";
+        }
+        echo "</table>";
     }
     ?>
-
-    <button>Show Results</button>
 </body>
 
 </html>

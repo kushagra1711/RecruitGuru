@@ -46,11 +46,20 @@
             while ($k = mysqli_fetch_array($result)) {
               extract($k);
 
+              if ($applications_open == false) {
+                continue;
+              }
+
+              $username = $_SESSION['username'];
+              $username = mysqli_real_escape_string($conn, $username);
+              $regno = $_SESSION['regno'];
+              $name = mysqli_real_escape_string($conn, $name);
+              $query = "SELECT * FROM registered_club WHERE user_id = '$username' AND name = '$name'";
+              $result3 = mysqli_query($conn, $query);
+
               $escaped = mysqli_real_escape_string($conn, $user_id);
               $domain = "SELECT * FROM club_domain WHERE user_id = '$escaped' ORDER BY domain_offering";
               $result2 = mysqli_query($conn, $domain);
-              $jkl = $name;
-
             ?>
 
 
@@ -81,16 +90,25 @@
                 <div class="m-6">
                   <p class="description"><?= $description ?></p>
                   <br><br>
-                  <form action="post" action="auth-redirect.php">
-                    <div class="apply" name="apply-club"><a href="apply.php" class="block w-max text-cyan-600"> Apply </a></div>
-                    <input type="hidden" name="clubname" value="<?php $name; ?>" hidden>
+                  <form method="post" action="auth-redirect.php">
+                    <?php
+                    if (mysqli_num_rows($result3) > 0) {
+                    ?>
+                      <div class="applied" name="apply-club"><a href="javascript:void(0)" class="block w-max text-cyan-600"> Applied </a></div>
+                    <?php
+                    } else {
+                    ?>
+                      <div class="apply" name="apply-club"><input type="submit" value="Apply" name="apply-club" class="block w-max text-cyan-600"></div>
+                    <?php
+                    }
+                    ?>
+                    <input type="hidden" name="clubname" value="<?= $name ?>" hidden>
                   </form>
                 </div>
               </div>
-
-
             <?php
             }
+            mysqli_close($conn);
             ?>
 
     </center>

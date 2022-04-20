@@ -15,10 +15,10 @@
 
 <body>
     <?php
-        $conn = mysqli_connect("localhost", "root", "", "my_db");  
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+    $conn = mysqli_connect("localhost", "root", "", "my_db");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
     ?>
     <div class="navbarz">
         <nav class="navbar navbar-expand-lg navbar-light navbarz">
@@ -43,31 +43,31 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">User ID</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter User ID" name="userid">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter User ID" name="userid" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">password</label>
-                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password" name="password">
+                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password" name="password" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">First Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name" name="firstname">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter First Name" name="firstname" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Last Name</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Last Name" name="lastname">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Last Name" name="lastname" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Registration Number</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Registration Number" name="regno">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Registration Number" name="regno" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Age</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Age" name="age">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Age" name="age" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Year of Study</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Year of Study" name="yearofstudy">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Year of Study" name="yearofstudy" required>
                     </div>
                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
@@ -75,34 +75,28 @@
         </div>
     </form>
 
-    <?php 
-        if(isset($_POST['submit'])){
-            $userid = $_POST['userid'];
-            $firstname = $_POST['firstname'];
-            $password = md5($_POST['password']);
-            $lastname = $_POST['lastname'];
-            $regno = $_POST['regno'];
-            $age = $_POST['age'];
-            $yearofstudy = $_POST['yearofstudy'];
+    <?php
+    if (isset($_POST['submit'])) {
+        $userid = $_POST['userid'];
+        $firstname = $_POST['firstname'];
+        $password = md5($_POST['password']);
+        $lastname = $_POST['lastname'];
+        $regno = $_POST['regno'];
+        $age = $_POST['age'];
+        $yearofstudy = $_POST['yearofstudy'];
 
-            $usr="INSERT INTO user (user_id, password, type) VALUES ('$userid', '$password', 'student' )";
-            if(mysqli_query($conn, $usr))
-            {
-                $sql = "INSERT INTO student (user_id, fname, lname, regno, age, year_of_study) VALUES ('$userid', '$firstname', '$lastname', '$regno', '$age', '$yearofstudy')";
-                if(mysqli_query($conn, $sql))
-                {
-                    echo "Records inserted successfully.";
-                }
-                else
-                {
-                    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-                }
+        $usr = "INSERT INTO user (user_id, password, type) VALUES ('$userid', '$password', 'student' )";
+        if (mysqli_query($conn, $usr)) {
+            $sql = "INSERT INTO student (user_id, fname, lname, regno, age, year_of_study) VALUES ('$userid', '$firstname', '$lastname', '$regno', '$age', '$yearofstudy')";
+            if (mysqli_query($conn, $sql)) {
+                echo "Records inserted successfully.";
+            } else {
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
             }
-            else
-            {
-                echo "ERROR: Could not able to execute $usr. " . mysqli_error($conn);
-            }
+        } else {
+            echo "ERROR: Could not able to execute $usr. " . mysqli_error($conn);
         }
+    }
     ?>
 
 

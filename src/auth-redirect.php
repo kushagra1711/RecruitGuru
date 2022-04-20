@@ -15,7 +15,6 @@
     <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-
     if (isset($_POST['login-submit'])) {
         $conn = mysqli_connect("localhost", "root", "", "my_db");
         $username = $_POST['username'];

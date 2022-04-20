@@ -53,28 +53,38 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="name_club" name="name_club" id="name_club" tabindex="2" class="form-control" placeholder="Name of the Club">
+                                        <input type="name_club" name="name_club" id="name_club" tabindex="2" class="form-control" placeholder="Name of the Club" required>
                                     </div>
                                     <!-- take inputs for numberofevents,registeration number,description-->
                                     <div class="form-group">
-                                        <input type="number" name="numberofevents" id="numberofevents" tabindex="2" class="form-control" placeholder="Number of Events">
+                                        <input type="number" name="numberofevents" id="numberofevents" tabindex="2" class="form-control" placeholder="Number of Events" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" name="registration_number" id="registration_number" tabindex="2" class="form-control" placeholder="Registration Number">
+                                        <input type="number" name="registration_number" id="registration_number" tabindex="2" class="form-control" placeholder="Registration Number" required>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="description" id="description" tabindex="2" class="form-control" placeholder="Description"></textarea>
+                                        <textarea name="description" id="description" tabindex="2" class="form-control" placeholder="Description" required></textarea>
                                     </div>
 
                                     <!-- take input of image as url-->
                                     <div class="form-group">
-                                        <input type="url" name="image" id="image" tabindex="2" class="form-control" placeholder="Image">
+                                        <input type="url" name="image" id="image" tabindex="2" class="form-control" placeholder="Image" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        Domain
+                                        <input type="checkbox" name="design" id="design" tabindex="2" value="design">
+                                        <label for="design">Design</label>
+                                        <input type="checkbox" name="management" id="management" tabindex="2" value="management">
+                                        <label for="management">Management</label>
+                                        <input type="checkbox" name="technical" id="technical" tabindex="2" value="technical">
+                                        <label for="technical">Technical</label>
                                     </div>
 
                                     <div class="form-group">
@@ -100,7 +110,6 @@
 
 
 if (isset($_POST['reg-club-submit'])) {
-
     $conn = mysqli_connect("localhost", "root", "", "my_db");
     $username = $_POST['username'];
     $password = md5($_POST['password']);
@@ -113,8 +122,25 @@ if (isset($_POST['reg-club-submit'])) {
     $usr = "INSERT INTO user (user_id, password, type) VALUES ('$username', '$password', '$type' )";
 
     if (mysqli_query($conn, $usr)) {
-        $club = "INSERT INTO club (user_id, name, num_events, regno, linkforimage, description) VALUES ('$username', '$name_club', '$numberofevents', '$registration_number', '$image', '$description')";
-        if (mysqli_query($conn, $club)) {
+        $club = "INSERT INTO club (user_id, name, num_events, regno, linkforimage, description, applications_open) VALUES ('$username', '$name_club', '$numberofevents', '$registration_number', '$image', '$description', false)";
+        $clublisting = "INSERT INTO clublisting VALUES ('$name_club', '', '', '');";
+        if (mysqli_query($conn, $club) && mysqli_query($conn, $clublisting)) {
+            if ($_POST['design'] != "") {
+                $domain = $_POST['design'];
+                $query = "INSERT INTO club_domain VALUES('$username', '$domain', 0);";
+                mysqli_query($conn, $query);
+            }
+            if ($_POST['management'] != "") {
+                $domain = $_POST['management'];
+                $query = "INSERT INTO club_domain VALUES('$username', '$domain', 0);";
+                mysqli_query($conn, $query);
+            }
+            if ($_POST['technical'] != "") {
+                $domain = $_POST['technical'];
+                $query = "INSERT INTO club_domain VALUES('$username', '$domain', 0);";
+                mysqli_query($conn, $query);
+            }
+
             echo "Successfully registered";
         } else {
             echo "Error: " . mysqli_error($conn);

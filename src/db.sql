@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS club (
     regno varchar(9),
     linkforimage varchar(512),
     description varchar(512),
+    applications_open boolean,
 
     CONSTRAINT club_uid FOREIGN KEY(user_id) REFERENCES user(user_id)
 );
