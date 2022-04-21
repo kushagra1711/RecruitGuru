@@ -9,8 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li><a class="nav-link nav-item" href="index.php">Home <span class="sr-only">(current)</span></a></li>
-
+                <li><a class="nav-link nav-item" href="index.php">HOME <span class="sr-only">(current)</span></a></li>
                 <li><a class="nav-link nav-item"><?php include "./auth-stub.php"; ?></a></li>
             </ul>
         </div>
