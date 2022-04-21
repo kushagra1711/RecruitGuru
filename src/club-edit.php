@@ -21,7 +21,7 @@
                 font-size: 1rem;
             }
 
-            .copyPasta{
+            .copyPasta {
                 font-family: "IBM Plex Mono", monospace;
                 font-size: 1rem;
             }
@@ -73,7 +73,7 @@
                 <input type="checkbox" name="applications_open" <?php $applications_open == "1" ? print("checked") : print(""); ?>>
                 <label for="applications_open" class="copyPasta">Open for Responses</label>
                 <br>
-                <input type="submit" value="Submit" name="submit" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
+                <input type="submit" value="Submit" name="submit" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:15px;">
             </form>
 
             <?php
