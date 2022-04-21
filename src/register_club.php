@@ -18,7 +18,6 @@
             align-items: center;
             margin-top: 3%;
         }
-
     </style>
 </head>
 
@@ -98,14 +97,13 @@
 
 </body>
 <?php
-
-
-
 if (isset($_POST['reg-club-submit'])) {
     $conn = mysqli_connect("localhost", "root", "", "my_db");
     $username = $_POST['username'];
+    $username = mysqli_real_escape_string($conn, $username);
     $password = md5($_POST['password']);
     $name_club = $_POST['name_club'];
+    $name_club = mysqli_real_escape_string($conn, $name_club);
     $numberofevents = $_POST['numberofevents'];
     $registration_number = $_POST['registration_number'];
     $description = $_POST['description'];
@@ -122,12 +120,12 @@ if (isset($_POST['reg-club-submit'])) {
                 $query = "INSERT INTO club_domain VALUES('$username', '$domain', 0);";
                 mysqli_query($conn, $query);
             }
-            if ($_POST['management'] != "") {
+            if (isset($_POST['management'])) {
                 $domain = $_POST['management'];
                 $query = "INSERT INTO club_domain VALUES('$username', '$domain', 0);";
                 mysqli_query($conn, $query);
             }
-            if ($_POST['technical'] != "") {
+            if (isset($_POST['technical'])) {
                 $domain = $_POST['technical'];
                 $query = "INSERT INTO club_domain VALUES('$username', '$domain', 0);";
                 mysqli_query($conn, $query);
