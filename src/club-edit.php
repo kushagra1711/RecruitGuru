@@ -20,6 +20,11 @@
                 font-family: "IBM Plex Mono", monospace;
                 font-size: 1rem;
             }
+
+            .copyPasta{
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 1rem;
+            }
         </style>
     </head>
 </head>
@@ -64,7 +69,9 @@
                 <textarea name="question2"><?= $question2; ?></textarea>
                 <p>Question 3</p>
                 <textarea name="question3"><?= $question3; ?></textarea>
+                <br>
                 <input type="checkbox" name="applications_open" <?php $applications_open == "1" ? print("checked") : print(""); ?>>
+                <label for="applications_open" class="copyPasta">Open for Responses</label>
                 <br>
                 <input type="submit" value="Submit" name="submit" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
             </form>
