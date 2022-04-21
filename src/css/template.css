@@ -145,3 +145,41 @@
 #editQuestions input {
     margin-top: 2rem;
 }
+
+#clubControls {
+    width: min-content;
+}
+
+#clubControls * {
+    width: 100%;
+}
+
+#clubControls form input {
+    background-color: #5e7365;
+    padding: 1rem;
+    margin: 1rem;
+    color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+#editSuccess {
+    margin-top: 1rem;
+    width: 40%;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+#editSuccess p {
+    margin-top: 3rem;
+}
+
+#editSuccess a {
+    background-color: #5e7365;
+    padding: 0.5rem;
+    margin: 1rem;
+    margin-top: 4rem;
+    color: white;
+    border-radius: 5px;
+    font-family: "IBM Plex Mono", monospace;
+}

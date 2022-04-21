@@ -91,7 +91,13 @@
                 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
                 $query2 = "UPDATE club SET applications_open = '$applications_open' WHERE user_id = '$username'";
                 $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
-                echo "Successfully edited the club";
+            ?>
+                <div id="editSuccess">
+                    <p>Successfully edited the questions!</p>
+                    <br>
+                    <a href="clubportal.php"> Return to club portal </a>
+                </div>
+            <?php
             }
             ?>
 

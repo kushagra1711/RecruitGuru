@@ -22,27 +22,29 @@
     <?php include "./auth-club.php"; ?>
     <div class="marginer">
         <center>
-            <form id="showRegistrations" action="clubportal.php" method="post">
-                <input type="hidden" name="doShowRegs" hidden>
-                <input type="submit" value="Show Registrations" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-            </form>
-            <!-- create a table showing all the registrations -->
+            <div id="clubControls">
+                <form id="showRegistrations" action="clubportal.php" method="post">
+                    <input type="hidden" name="doShowRegs" hidden>
+                    <input type="submit" value="Show Registrations">
+                </form>
+                <!-- create a table showing all the registrations -->
 
-            <form id="removeClub" action="clubportal.php" method="post">
-                <input type="hidden" name="doRemove" hidden>
-                <input type="submit" value="Delete club" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-            </form>
-            <!-- remove the club from club domains,club and user -->
+                <form id="removeClub" action="clubportal.php" method="post">
+                    <input type="hidden" name="doRemove" hidden>
+                    <input type="submit" value="Delete club">
+                </form>
+                <!-- remove the club from club domains,club and user -->
 
-            <form id="showResults" action="clubportal.php" method="post">
-                <input type="hidden" name="doShowResults" hidden>
-                <input type="submit" value="Show Results" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-            </form>
+                <form id="showResults" action="clubportal.php" method="post">
+                    <input type="hidden" name="doShowResults" hidden>
+                    <input type="submit" value="Show Results">
+                </form>
 
-            <form id="editQuestions" action="club-edit.php" method="post">
-                <input type="hidden" name="doEditQuestions" hidden>
-                <input type="submit" value="Edit Questions" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-            </form>
+                <form id="editQuestions" action="club-edit.php" method="post">
+                    <input type="hidden" name="doEditQuestions" hidden>
+                    <input type="submit" value="Edit Questions">
+                </form>
+            </div>
 
             <br><br><br>
 
