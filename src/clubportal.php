@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/template.css">
     <style>
-        .marginer{
+        .marginer {
             margin-top: 5%;
         }
     </style>
@@ -20,85 +20,85 @@
 
 <body>
     <?php include "./auth-club.php"; ?>
-<div class = "marginer">
-    <center>
-
-
-        <form id="showRegistrations" action="clubportal.php" method="post">
-            <input type="hidden" name="doShowRegs" hidden>
-            <input type="submit" value="Show Registrations" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-        </form>
-        <!-- create a table showing all the registrations -->
-
-        <form id="removeClub" action="clubportal.php" method="post">
-            <input type="hidden" name="doRemove" hidden>
-            <input type="submit" value="Delete club" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-        </form>
-        <!-- remove the club from club domains,club and user -->
-
-        <form id="showResults" action="clubportal.php" method="post">
-            <input type="hidden" name="doShowResults" hidden>
-            <input type="submit" value="Show Results" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-        </form>
-
-        <form id="editQuestions" action="club-edit.php" method="post">
-            <input type="hidden" name="doEditQuestions" hidden>
-            <input type="submit" value="Edit Questions" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-        </form>
-        <br><br><br>
-        <?php
-        if (isset($_POST['doShowRegs'])) {
-            $conn = mysqli_connect("localhost", "root", "", "my_db");
-            $name = $_SESSION['name'];
-            $name = mysqli_real_escape_string($conn, $name);
-            $query = "SELECT * FROM registered_club WHERE name = '$name'";
-            $result = mysqli_query($conn, $query);
-            $result_assoc = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            echo "<style>table, th, td { border: 2px solid black; padding: 2px; } </style>";
-            echo "<table class='table-sm table-bordered table-hover'>";
-            echo "<tr><th scope='col'>Student name</th><th scope='col'>Register number</th></tr>";
-            foreach ($result_assoc as $student) {
-                $name = mysqli_real_escape_string($conn, $student['user_id']);
-                $query2 = "SELECT fname, lname FROM student WHERE user_id = '$name'";
-                $result2 = mysqli_query($conn, $query2);
-                $result2_assoc = mysqli_fetch_assoc($result2);
-                $stuname = $result2_assoc['fname'] . " " . $result2_assoc['lname'];
-                $regno = $student['regno'];
-                echo "<tr><td>$stuname</td><td>$regno</td></tr>";
-            }
-            echo "</table>";
-        } else if (isset($_POST['doRemove'])) {
-            $removed = $_SESSION['username'];
-        ?>
-            <form action="club-delete.php" method="POST" id="removalForm">
-                <input hidden name="theRemoved" value="<?= $removed ?>">
-                <input hidden name="userInput" id="theUserInput">
+    <div class="marginer">
+        <center>
+            <form id="showRegistrations" action="clubportal.php" method="post">
+                <input type="hidden" name="doShowRegs" hidden>
+                <input type="submit" value="Show Registrations" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
             </form>
-            <script>
-                result = window.prompt("Are you sure you want to delete the club? Enter the name <?= $removed ?> to proceed.");
-                document.getElementById("theUserInput").value = result;
-                document.getElementById("removalForm").submit();
-            </script>
-        <?php
-        } else if (isset($_POST['doShowResults'])) {
-            $conn = mysqli_connect("localhost", "root", "", "my_db");
-            $name = $_SESSION['name'];
-            $name = mysqli_real_escape_string($conn, $name);
-            $query = "SELECT * FROM answers WHERE name = '$name'";
-            $result = mysqli_query($conn, $query);
-            $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            echo "<table class='table-sm table-bordered table-hover'><tr><th>Register number</th><th>Answer 1</th><th>Answer 2</th><th>Answer 3</th></tr>";
-            foreach ($results as $r) {
-                $name = $r['name'];
-                $a1 = $r['answer1'];
-                $a2 = $r['answer2'];
-                $a3 = $r['answer3'];
-                echo "<tr><td>$name</td><td>$a1</td><td>$a2</td><td>$a3</td></tr>";
+            <!-- create a table showing all the registrations -->
+
+            <form id="removeClub" action="clubportal.php" method="post">
+                <input type="hidden" name="doRemove" hidden>
+                <input type="submit" value="Delete club" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
+            </form>
+            <!-- remove the club from club domains,club and user -->
+
+            <form id="showResults" action="clubportal.php" method="post">
+                <input type="hidden" name="doShowResults" hidden>
+                <input type="submit" value="Show Results" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
+            </form>
+
+            <form id="editQuestions" action="club-edit.php" method="post">
+                <input type="hidden" name="doEditQuestions" hidden>
+                <input type="submit" value="Edit Questions" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
+            </form>
+
+            <br><br><br>
+
+            <?php
+            if (isset($_POST['doShowRegs'])) {
+                $conn = mysqli_connect("localhost", "root", "", "my_db");
+                $name = $_SESSION['name'];
+                $name = mysqli_real_escape_string($conn, $name);
+                $query = "SELECT * FROM registered_club WHERE name = '$name'";
+                $result = mysqli_query($conn, $query);
+                $result_assoc = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                echo "<style>table, th, td { border: 2px solid black; padding: 2px; } </style>";
+                echo "<table class='table-sm table-bordered table-hover'>";
+                echo "<tr><th scope='col'>Student name</th><th scope='col'>Register number</th></tr>";
+                foreach ($result_assoc as $student) {
+                    $name = mysqli_real_escape_string($conn, $student['user_id']);
+                    $query2 = "SELECT fname, lname FROM student WHERE user_id = '$name'";
+                    $result2 = mysqli_query($conn, $query2);
+                    $result2_assoc = mysqli_fetch_assoc($result2);
+                    $stuname = $result2_assoc['fname'] . " " . $result2_assoc['lname'];
+                    $regno = $student['regno'];
+                    echo "<tr><td>$stuname</td><td>$regno</td></tr>";
+                }
+                echo "</table>";
+            } else if (isset($_POST['doRemove'])) {
+                $removed = $_SESSION['username'];
+            ?>
+                <form action="club-delete.php" method="POST" id="removalForm">
+                    <input hidden name="theRemoved" value="<?= $removed ?>">
+                    <input hidden name="userInput" id="theUserInput">
+                </form>
+                <script>
+                    result = window.prompt("Are you sure you want to delete the club? Enter the name <?= $removed ?> to proceed.");
+                    document.getElementById("theUserInput").value = result;
+                    document.getElementById("removalForm").submit();
+                </script>
+            <?php
+            } else if (isset($_POST['doShowResults'])) {
+                $conn = mysqli_connect("localhost", "root", "", "my_db");
+                $name = $_SESSION['name'];
+                $name = mysqli_real_escape_string($conn, $name);
+                $query = "SELECT * FROM answers WHERE name = '$name'";
+                $result = mysqli_query($conn, $query);
+                $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                echo "<table class='table-sm table-bordered table-hover'><tr><th>Register number</th><th>Answer 1</th><th>Answer 2</th><th>Answer 3</th></tr>";
+                foreach ($results as $r) {
+                    $name = $r['name'];
+                    $a1 = $r['answer1'];
+                    $a2 = $r['answer2'];
+                    $a3 = $r['answer3'];
+                    echo "<tr><td>$name</td><td>$a1</td><td>$a2</td><td>$a3</td></tr>";
+                }
+                echo "</table>";
             }
-            echo "</table>";
-        }
-        ?>
-    </center>
+            ?>
+        </center>
     </div>
 </body>
 
