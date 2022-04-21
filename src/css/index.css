@@ -2,12 +2,12 @@
 
 h1 {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 4rem;
+    font-size: 3rem !important;
 }
 
 h3 {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 3rem;
+    font-size: 2rem !important;
 }
 
 .smthin {

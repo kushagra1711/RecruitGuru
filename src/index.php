@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li>
-            <a class="nav-link nav-item" href="index.php">HOME <span class="sr-only">(current)</span></a>
+            <a class="nav-link nav-item" href="#">HOME <span class="sr-only">(current)</span></a>
           </li>
 
         </ul>
@@ -39,7 +39,7 @@
       <br />
       <br />
       <h3>
-        Apply for over <span class="name1">{quantity}</span> clubs, the easy
+        Apply for <span class="name1">any</span> number of clubs, the easy
         way.
       </h3>
       <br><br>

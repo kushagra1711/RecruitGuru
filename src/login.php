@@ -58,7 +58,7 @@
                 <br>
                 <input type="password" class="input" name="password" id="password" placeholder="Password" required>
                 <br> <br>
-                <input type="submit" name="login-submit" id="login-submit" style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;" class="login" value="Log In">
+                <input type="submit" name="login-submit" id="login-submit" class="login" value="Log In">
             </form>
             <br>
             <a href="register_student.php" class="register">Register Student</a>
