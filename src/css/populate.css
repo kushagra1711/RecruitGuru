@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Roboto+Mono&display=swap");
+@import "./template.css";
 
 body {
     margin: 0;
@@ -57,12 +58,11 @@ body {
 }
 
 .domains {
-    margin: 1px;
     font-size: 1rem;
     font-weight: bold;
     font-family: "IBM Plex Mono", monospace;
-    background-color: #a4e5e0;
-    margin-top: 3px;
+    background-color: var(--header);
+    margin: 3px 1px 1px;
     border-radius: 0.5rem;
 }
 
