@@ -13,7 +13,7 @@
                 width: 50%;
                 text-align: center;
                 align-items: center;
-                margin-top: 3%;
+                margin-top: 1%;
             }
         </style>
     </head>

@@ -4,6 +4,7 @@
 body {
     margin: 0;
     font-family: "Lato", sans-serif;
+    overflow: hidden;
 }
 
 .populated {
@@ -21,6 +22,9 @@ body {
 
 body {
     height: 1000px;
+}
+.py-16{
+    padding-top: 0px !important;
 }
 
 .bigd {
@@ -47,22 +51,29 @@ body {
 
 .alignment {
     text-align: justify;
+    display: flex;
+    justify-content:space-around;
 }
 
 .dom {
     text-align: center;
     width: 80%;
     border-radius: 0.5rem;
-    padding: 0.3rem;
+    padding: 0rem;
     margin: 1px;
+    display: flex;
+    justify-content: left;
 }
-
+.pl-5{
+    padding-left: 5px !important;
+}
 .domains {
     font-size: 1rem;
     font-weight: bold;
     font-family: "IBM Plex Mono", monospace;
     background-color: var(--header);
-    margin: 3px 1px 1px;
+    margin: 5px;
+    padding:10px;
     border-radius: 0.5rem;
 }
 

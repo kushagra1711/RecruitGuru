@@ -64,7 +64,16 @@
                                                 <div class="space-y-4">
                                                     <div class="alignment">
                                                         <h4 class="clubName"><?= $name ?></h4>
-                                                        <div class="dom">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                               
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="m-6">
+                                    <div class="dom">
                                                             <?php
                                                             while ($domain = mysqli_fetch_assoc($result2)) {
                                                                 $domain = $domain['domain_offering'];
@@ -73,14 +82,7 @@
                                                                 <?php
                                                             }
                                                             ?>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-6">
                                         <p class="description"><?= $description ?></p>
                                         <br><br>
                                         <form method="post" action="auth-redirect.php">

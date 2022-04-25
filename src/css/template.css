@@ -24,7 +24,7 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
 }
 
 .container {
-    padding: 3rem;
+    padding: 1rem;
     text-align: center;
     font-family: "IBM Plex Mono", monospace;
 }
@@ -73,6 +73,7 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
     font-family: "IBM Plex Mono", monospace;
     font-size: 1.6rem;
     padding: 1rem;
+    
 }
 
 .footer {
@@ -181,10 +182,10 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
 
 #editQuestions input, .containers form input[type="submit"] {
     background-color: var(--green);
-    padding: 1rem;
+    padding: 0.67rem !important;
     color: white;
     border-radius: 5px;
-    margin: 5px 1rem 1rem;
+    margin: 0 !important;
     font-family: "IBM Plex Mono", monospace;
 }
 
