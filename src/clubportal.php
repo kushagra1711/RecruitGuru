@@ -8,6 +8,7 @@
         <title>RecruitGuru</title>
         <?php include "./scripts.php"; ?>
         <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="css/populate.css">
         <style>
             .marginer {
                 margin-top: 5%;
@@ -20,29 +21,91 @@
         <div class="container-row">
             <div class="layer1">
                 <div class="marginer">
-                    <div id="clubControls">
-                        <form id="showRegistrations" action="clubportal.php" method="post">
-                            <input type="hidden" name="doShowRegs" hidden>
-                            <input type="submit" value="Show Registrations">
-                        </form>
-                        <!-- create a table showing all the registrations -->
+                    <?php
+                    $conn = mysqli_connect("localhost", "root", "", "my_db");
+                    $username = $_SESSION['username'];
+                    $username = mysqli_real_escape_string($conn, $username);
+                    $query = "SELECT * FROM club WHERE user_id = '$username'";
+                    $result = mysqli_query($conn, $query);
+                    $result_assoc = mysqli_fetch_assoc($result);
+                    $name = $result_assoc['name'];
+                    $linkforimage = $result_assoc['linkforimage'];
+                    $description = $result_assoc['description'];
 
-                        <form id="removeClub" action="clubportal.php" method="post">
-                            <input type="hidden" name="doRemove" hidden>
-                            <input type="submit" value="Delete club">
-                        </form>
-                        <!-- remove the club from club domains,club and user -->
+                    $query2 = "SELECT * FROM club_domain WHERE user_id = '$username'";
+                    $result2 = mysqli_query($conn, $query2);
+                    ?>
+                    <div class="sm:flex flex-row w-full">
+                        <div class="pl-1 rounded-xl mr-4 group sm:flex flex-col space-x-6 bg-white bg-opacity-50
+                        shadow-xl hover:rounded-2xl club-card min-w-fit">
+                            <div class="sm:flex flex-row min-w-fit">
+                                <img src="<?= $linkforimage ?>  " alt="art cover" loading="lazy" width="1000"
+                                     height="667"
+                                     class="h-36 mt-5 ml-5 sm:h-half w-half sm:w-5/12 object-cover object-center rounded-lg">
+                                <div class="sm:w-7/12 pt-5 pr-5 pl-5 min-w-fit">
+                                    <div class="space-y-2">
+                                        <div class="space-y-4">
+                                            <div class="alignment min-w-fit">
+                                                <h4 class="clubName"><?= $name ?></h4>
+                                                <div class="dom min-w-fit">
+                                                    <?php
+                                                    while ($domain = mysqli_fetch_assoc($result2)) {
+                                                        $domain = $domain['domain_offering'];
+                                                        ?>
+                                                        <h6 class="domains"><?= $domain ?></h6>
+                                                        <?php
+                                                    }
+                                                    ?>
 
-                        <form id="showResults" action="clubportal.php" method="post">
-                            <input type="hidden" name="doShowResults" hidden>
-                            <input type="submit" value="Show Results">
-                        </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-6 sm:flex flex-col">
+                                <p class="description"><?= $description ?></p>
+                                <br>
+                                <form action="club-edit-desc.php" method="post">
+                                    <div class="apply" name="apply-club"><input type="submit" value="Edit"
+                                                                                name="apply-club"
+                                                                                class="block w-max text-cyan-600">
+                                    </div>
+                                    <input type="hidden" name="clubname" value="<?= $username ?>" hidden>
+                                </form>
+                            </div>
+                        </div>
 
-                        <form id="editQuestions" action="club-edit.php" method="post">
-                            <input type="hidden" name="doEditQuestions" hidden>
-                            <input type="submit" value="Edit Questions">
-                        </form>
+                        <div class="pl-1 rounded-xl mr-4 group sm:flex flex-col space-x-6 w-fit bg-white
+                        bg-opacity-50 shadow-xl hover:rounded-2xl club-card min-w-fit">
+                            <div class="sm:flex flex-row w-full">
+                                <div id="clubControls">
+                                    <form id="showRegistrations" action="clubportal.php" method="post">
+                                        <input type="hidden" name="doShowRegs" hidden>
+                                        <input type="submit" value="Show Registrations">
+                                    </form>
+                                    <!-- create a table showing all the registrations -->
+
+                                    <form id="removeClub" action="clubportal.php" method="post">
+                                        <input type="hidden" name="doRemove" hidden>
+                                        <input type="submit" value="Delete club">
+                                    </form>
+                                    <!-- remove the club from club domains,club and user -->
+
+                                    <form id="showResults" action="clubportal.php" method="post">
+                                        <input type="hidden" name="doShowResults" hidden>
+                                        <input type="submit" value="Show Results">
+                                    </form>
+
+                                    <form id="editClubQuestions" action="club-edit.php" method="post">
+                                        <input type="hidden" name="doEditQuestions" hidden>
+                                        <input type="submit" value="Edit Questions">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
 
                     <br><br><br>
 

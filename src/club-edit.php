@@ -16,6 +16,7 @@
                     margin-top: 5%;
                     font-family: "IBM Plex Mono", monospace;
                     font-size: 1rem;
+                    left: 0;
                 }
 
                 .copyPasta {
@@ -32,83 +33,77 @@
         ?>
 
         <div class="marginer">
-            <center>
+            <?php
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
 
+            $conn = mysqli_connect("localhost", "root", "", "my_db");
 
-                <?php
-                error_reporting(E_ALL);
-                ini_set('display_errors', 1);
+            $username = $_SESSION['username'];
+            $username = mysqli_real_escape_string($conn, $username);
+            $name = $_SESSION['name'];
+            $name = mysqli_real_escape_string($conn, $name);
 
-                $conn = mysqli_connect("localhost", "root", "", "my_db");
+            $query = "SELECT * FROM club WHERE user_id = '$username'";
+            $result = mysqli_query($conn, $query);
+            $result_assoc = mysqli_fetch_assoc($result);
 
-                $username = $_SESSION['username'];
-                $username = mysqli_real_escape_string($conn, $username);
-                $name = $_SESSION['name'];
-                $name = mysqli_real_escape_string($conn, $name);
+            $query2 = "SELECT * FROM clublisting WHERE name = '$name'";
+            $result2 = mysqli_query($conn, $query2);
+            $result_assoc2 = mysqli_fetch_assoc($result2);
 
-                $query = "SELECT * FROM club WHERE user_id = '$username'";
-                $result = mysqli_query($conn, $query);
-                $result_assoc = mysqli_fetch_assoc($result);
+            $applications_open = $result_assoc['applications_open'];
+            $question1 = $result_assoc2['question1'];
+            $question2 = $result_assoc2['question2'];
+            $question3 = $result_assoc2['question3'];
+            ?>
+            <div class="container-row jugaad">
+                <div class="layer1 jugaad">
+                    <form id="editQuestions" action="club-edit.php" method="POST">
+                        <p>Question 1</p>
+                        <textarea name="question1"><?= $question1; ?></textarea>
+                        <p>Question 2</p>
+                        <textarea name="question2"><?= $question2; ?></textarea>
+                        <p>Question 3</p>
+                        <textarea name="question3"><?= $question3; ?></textarea>
+                        <br>
+                        <input type="checkbox"
+                               name="applications_open" <?php $applications_open == "1" ? print("checked") : print(""); ?>>
+                        <label for="applications_open" class="copyPasta">Open for Responses</label>
+                        <br>
+                        <input type="submit" value="Submit" name="submit">
+                    </form>
 
-                $query2 = "SELECT * FROM clublisting WHERE name = '$name'";
-                $result2 = mysqli_query($conn, $query2);
-                $result_assoc2 = mysqli_fetch_assoc($result2);
+                    <?php
+                    if (isset($_POST['submit'])) {
+                        $question1 = $_POST['question1'];
+                        $question1 = mysqli_real_escape_string($conn, $question1);
+                        $question2 = $_POST['question2'];
+                        $question2 = mysqli_real_escape_string($conn, $question2);
+                        $question3 = $_POST['question3'];
+                        $question3 = mysqli_real_escape_string($conn, $question3);
 
-                $applications_open = $result_assoc['applications_open'];
-                $question1 = $result_assoc2['question1'];
-                $question2 = $result_assoc2['question2'];
-                $question3 = $result_assoc2['question3'];
-                ?>
-                <div class="container-row">
-                    <div class="layer1">
-                        <form id="editQuestions" action="club-edit.php" method="POST">
-                            <p>Question 1</p>
-                            <textarea name="question1"><?= $question1; ?></textarea>
-                            <p>Question 2</p>
-                            <textarea name="question2"><?= $question2; ?></textarea>
-                            <p>Question 3</p>
-                            <textarea name="question3"><?= $question3; ?></textarea>
-                            <br>
-                            <input type="checkbox"
-                                   name="applications_open" <?php $applications_open == "1" ? print("checked") : print(""); ?>>
-                            <label for="applications_open" class="copyPasta">Open for Responses</label>
-                            <br>
-                            <input type="submit" value="Submit" name="submit">
-                        </form>
+                        $applications_open = isset($_POST['applications_open']) ? 1 : 0;
 
-                        <?php
-                        if (isset($_POST['submit'])) {
-                            $question1 = $_POST['question1'];
-                            $question1 = mysqli_real_escape_string($conn, $question1);
-                            $question2 = $_POST['question2'];
-                            $question2 = mysqli_real_escape_string($conn, $question2);
-                            $question3 = $_POST['question3'];
-                            $question3 = mysqli_real_escape_string($conn, $question3);
-
-                            $applications_open = isset($_POST['applications_open']) ? 1 : 0;
-
-                            $query = "UPDATE clublisting SET question1 = '$question1', question2 = '$question2', question3 = '$question3' WHERE name = '$name'";
-                            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-                            $query2 = "UPDATE club SET applications_open = '$applications_open' WHERE user_id = '$username'";
-                            $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
-                            ?>
-                            <div id="editSuccess">
-                                <p>Successfully edited the questions!</p>
-                                <br>
-                                <a href="clubportal.php"> Return to club portal </a>
-                            </div>
-                            <?php
-                        }
+                        $query = "UPDATE clublisting SET question1 = '$question1', question2 = '$question2', question3 = '$question3' WHERE name = '$name'";
+                        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                        $query2 = "UPDATE club SET applications_open = '$applications_open' WHERE user_id = '$username'";
+                        $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
                         ?>
-                    </div>
-                    <div id="particles-js" class="layer2"></div>
-
+                        <div id="editSuccess">
+                            <p>Successfully edited the questions!</p>
+                            <br>
+                            <a href="clubportal.php"> Return to club portal </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
+                <div id="particles-js" class="layer2 jugaad"></div>
 
-                <?php include "./particles.php"; ?>
+            </div>
 
-
-            </center>
+            <?php include "./particles.php"; ?>
         </div>
     </body>
 

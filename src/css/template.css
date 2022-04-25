@@ -142,7 +142,7 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
     font-family: "IBM Plex Mono", monospace;
 }
 
-#editQuestions {
+#editQuestions, .editDescForm {
     width: 40%;
 }
 
@@ -162,13 +162,24 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
 
 #clubControls {
     width: fit-content;
+    margin: 1rem;
 }
 
 #clubControls * {
     width: 100%;
 }
 
-#clubControls form input, #editQuestions input, .containers form input[type="submit"] {
+#clubControls form input {
+    background-color: var(--green);
+    padding: 1rem;
+    color: white;
+    border-radius: 5px;
+    /*margin: 5px 1rem 1rem;*/
+    margin-bottom: 1rem;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+#editQuestions input, .containers form input[type="submit"] {
     background-color: var(--green);
     padding: 1rem;
     color: white;
@@ -219,6 +230,8 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
     justify-content: center;
     align-content: center;
     flex-direction: column;
+    min-width: fit-content;
+    width: 100%;
 }
 
 .domain-checks {
@@ -264,4 +277,27 @@ button:hover, .register:hover, #login-submit:hover, .containers form input[type=
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 80%;
+}
+
+.jugaad {
+    left: 0;
+}
+
+.club-card {
+    width: 50% !important;
+    min-width: 100px;
+}
+
+.club-card > div {
+    display: flex;
+    justify-content: center;
+}
+
+.editOuter {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.editDescForm p {
+    margin: 1rem;
 }
