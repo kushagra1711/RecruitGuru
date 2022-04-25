@@ -4,7 +4,6 @@
 body {
     margin: 0;
     font-family: "Lato", sans-serif;
-    overflow: hidden;
 }
 
 .populated {
@@ -23,7 +22,8 @@ body {
 body {
     height: 1000px;
 }
-.py-16{
+
+.py-16 {
     padding-top: 0px !important;
 }
 
@@ -52,7 +52,7 @@ body {
 .alignment {
     text-align: justify;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
 .dom {
@@ -64,16 +64,18 @@ body {
     display: flex;
     justify-content: left;
 }
-.pl-5{
+
+.pl-5 {
     padding-left: 5px !important;
 }
+
 .domains {
     font-size: 1rem;
     font-weight: bold;
     font-family: "IBM Plex Mono", monospace;
     background-color: var(--header);
     margin: 5px;
-    padding:10px;
+    padding: 10px;
     border-radius: 0.5rem;
 }
 
@@ -82,15 +84,29 @@ body {
     font-family: "IBM Plex Mono", monospace;
 }
 
-.apply {
+.apply, .applied {
     color: black;
     font-size: 1rem;
     font-family: "IBM Plex Mono", monospace;
     text-decoration: none;
-    background-color: #0c6170;
     border-radius: 0.5rem;
     padding: 0.2rem 0.5rem;
     width: fit-content;
+}
+
+.applyForm a {
+    background-color: var(--green);
+    padding: 1rem;
+    color: white;
+    border-radius: 5px;
+    /*margin: 5px 1rem 1rem;*/
+    margin-bottom: 1rem;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.apply input:hover {
+    color: var(--dark);
+    text-decoration: none;
 }
 
 a {
@@ -101,4 +117,8 @@ a {
 a:hover {
     color: gray;
     text-decoration: none;
+}
+
+body {
+    height: 100%;
 }

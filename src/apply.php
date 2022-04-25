@@ -19,36 +19,41 @@
         ?>
 
         <!-- print 3 text inputs with questions and a submit button -->
-        <div id="applyForm">
-            <center>
-                <form id="applyClub" action="apply.php" method="post">
-                    <?php
-                    $conn = mysqli_connect("localhost", "root", "", "my_db");
-                    $clubname = $_SESSION['clubname'];
-                    $clubname = mysqli_real_escape_string($conn, $clubname);
+        <div class="container-row">
+            <div class="layer1">
+                <div id="applyForm">
+                    <form id="applyClub" action="apply.php" method="post">
+                        <?php
+                        $conn = mysqli_connect("localhost", "root", "", "my_db");
+                        $clubname = $_SESSION['clubname'];
+                        $clubname = mysqli_real_escape_string($conn, $clubname);
 
-                    $query = "SELECT * FROM clublisting WHERE name = '$clubname'";
-                    $result = mysqli_query($conn, $query);
-                    $row = mysqli_fetch_assoc($result);
-                    $question1 = $row['question1'];
-                    $question2 = $row['question2'];
-                    $question3 = $row['question3'];
-                    ?>
-                    <p><?= $question1 ?></p>
-                    <textarea name='answer1' id='answer1'></textarea>
-                    <p><?= $question2 ?></p>
-                    <textarea name='answer2' id='answer2'></textarea>
-                    <p><?= $question3 ?></p>
-                    <textarea name='answer3' id='answer3'></textarea>
-                    <br>
-                    <input type='submit' value='Apply' name='applied'
-                           style=" background-color: #5E7365; padding: 5px; color:white; border-radius:5px; margin-top:5px;">
-                    <?php
-                    mysqli_close($conn);
-                    ?>
-                </form>
-            </center>
+                        $query = "SELECT * FROM clublisting WHERE name = '$clubname'";
+                        $result = mysqli_query($conn, $query);
+                        $row = mysqli_fetch_assoc($result);
+                        $question1 = $row['question1'];
+                        $question2 = $row['question2'];
+                        $question3 = $row['question3'];
+                        ?>
+                        <p>Question 1. <?= $question1 ?></p>
+                        <textarea name='answer1' id='answer1'></textarea>
+                        <p>Question 2. <?= $question2 ?></p>
+                        <textarea name='answer2' id='answer2'></textarea>
+                        <p>Question 3. <?= $question3 ?></p>
+                        <textarea name='answer3' id='answer3'></textarea>
+                        <br>
+                        <input type='submit' value='Apply' name='applied' id="applyButton">
+                        <?php
+                        mysqli_close($conn);
+                        ?>
+                    </form>
+                </div>
+            </div>
+            <div id="particles-js" class="layer2"></div>
         </div>
+
+        <?php include "./particles.php"; ?>
+
 
         <?php
         // print_r($_POST);
@@ -81,8 +86,5 @@
             }
         }
         ?>
-
-
     </body>
-
 </html>
