@@ -8,7 +8,7 @@
         <title>RecruitGuru</title>
         <?php include "./scripts.php"; ?>
         <link rel="stylesheet" href="css/template.css">
-        <link rel="stylesheet" href="css/populate.css">
+        <link rel="stylesheet" href="css/card.css">
         <style>
             .marginer {
                 margin-top: 5%;
@@ -20,7 +20,7 @@
         <?php include "./auth-club.php"; ?>
         <div class="container-row">
             <div class="layer1">
-                <div class="marginer">
+                <div class="marginer w-90%">
                     <?php
                     $conn = mysqli_connect("localhost", "root", "", "my_db");
                     $username = $_SESSION['username'];
@@ -37,7 +37,7 @@
                     ?>
                     <div class="sm:flex flex-row w-full">
                         <div class="pl-1 rounded-xl mr-4 group sm:flex flex-col space-x-6 bg-white bg-opacity-50
-                        shadow-xl hover:rounded-2xl club-card min-w-fit">
+                        shadow-xl hover:rounded-2xl club-card w-50%">
                             <div class="sm:flex flex-row min-w-fit">
                                 <img src="<?= $linkforimage ?>  " alt="art cover" loading="lazy" width="1000"
                                      height="667"
@@ -66,19 +66,16 @@
                             <div class="m-6 sm:flex flex-col">
                                 <p class="description"><?= $description ?></p>
                                 <br>
-                                <form action="club-edit-desc.php" method="post">
-                                    <div class="apply" name="apply-club"><input type="submit" value="Edit"
-                                                                                name="apply-club"
-                                                                                class="block w-max text-cyan-600">
-                                    </div>
+                                <form action="club-edit-desc.php" method="post" id="editClubDesc">
+                                    <input type="submit" value="Edit" name="apply-club">
                                     <input type="hidden" name="clubname" value="<?= $username ?>" hidden>
                                 </form>
                             </div>
                         </div>
 
                         <div class="pl-1 rounded-xl mr-4 group sm:flex flex-col space-x-6 w-fit bg-white
-                        bg-opacity-50 shadow-xl hover:rounded-2xl club-card min-w-fit">
-                            <div class="sm:flex flex-row w-full">
+                        bg-opacity-50 shadow-xl hover:rounded-2xl club-card items-center justify-center min-w-fit">
+                            <div class="sm:flex flex-row items-center justify-center w-full">
                                 <div id="clubControls">
                                     <form id="showRegistrations" action="clubportal.php" method="post">
                                         <input type="hidden" name="doShowRegs" hidden>

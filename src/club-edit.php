@@ -67,9 +67,11 @@
                         <p>Question 3</p>
                         <textarea name="question3"><?= $question3; ?></textarea>
                         <br>
-                        <input type="checkbox"
-                               name="applications_open" <?php $applications_open == "1" ? print("checked") : print(""); ?>>
-                        <label for="applications_open" class="copyPasta">Open for Responses</label>
+                        <div>
+                            <input type="checkbox"
+                                   name="applications_open" <?php $applications_open == "1" ? print("checked") : print(""); ?>>
+                            <label for="applications_open" class="copyPasta">Open for Responses</label>
+                        </div>
                         <br>
                         <input type="submit" value="Submit" name="submit">
                     </form>

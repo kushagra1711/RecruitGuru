@@ -69,6 +69,15 @@
                 $query = "INSERT INTO club_domain VALUES('$username', 'technical', 0)";
                 $result = mysqli_query($conn, $query);
             }
+
+            $description = $_POST['description'];
+            $description = mysqli_real_escape_string($conn, $description);
+            $linkforimage = $_POST['linkforimage'];
+
+            $query = "UPDATE club SET description = '$description', linkforimage = '$linkforimage' WHERE user_id = '$username'";
+            $result = mysqli_query($conn, $query);
+
+            $successful = true;
             mysqli_close($conn);
         }
         ?>
@@ -103,9 +112,9 @@
             <div class="layer1 editOuter containers">
                 <form id="club-apply" class="editDescForm" action="club-edit-desc.php" method="POST">
                     <p>Edit description</p>
-                    <textarea name="question2" class="form-control"><?= $description; ?></textarea>
+                    <textarea name="description" class="form-control"><?= $description; ?></textarea>
                     <p>Edit image URL</p>
-                    <textarea name="question3" class="form-control"><?= $linkforimage; ?></textarea>
+                    <textarea name="linkforimage" class="form-control"><?= $linkforimage; ?></textarea>
                     <br>
                     <div class="form-group domains">
                         <div class="domains-box">
@@ -140,6 +149,18 @@
                     <input type="hidden" value="<?= $management ?>" name="hasManagement" hidden>
                     <input type="hidden" value="<?= $technical ?>" name="hasTechnical" hidden>
                 </form>
+
+                <?php
+                if (isset($successful) && $successful) {
+                    ?>
+                    <div id="editSuccess">
+                        <p>Successfully edited!</p>
+                        <br>
+                        <a href="clubportal.php"> Return to club portal </a>
+                    </div>
+                    <?php
+                }
+                ?>
 
                 <?php
                 mysqli_close($conn);
