@@ -54,8 +54,8 @@
                                     $result2 = mysqli_query($conn, $domain);
 
                                     $query3 = "SELECT * FROM user WHERE user_id = '$escaped'";
-                                    $result3 = mysqli_query($conn, $query3);
-                                    $type = mysqli_fetch_assoc($result3)['type'];
+                                    $result4 = mysqli_query($conn, $query3);
+                                    $type = mysqli_fetch_assoc($result4)['type'];
                                     ?>
 
 
