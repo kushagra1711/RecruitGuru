@@ -74,7 +74,7 @@
                     $_SESSION['lname'] = $result_assoc['lname'];
                     $_SESSION['regno'] = $result_assoc['regno'];
 
-                    die(header("Location: populate.php"));
+                    die(header("Location: studentPortal.php"));
                 } else {
                     $query = "SELECT * FROM club WHERE user_id = '$username'";
                     $result = mysqli_query($conn, $query);

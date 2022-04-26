@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 } else {
 ?>
     <form action="auth-logout.php" method="post">
-        <input type="submit" name="logout-submit" value="Logout">
+        <input type="submit" name="logout-submit" value="<?= $_SESSION['username'] ?> - Logout">
     </form>
 <?php
 }

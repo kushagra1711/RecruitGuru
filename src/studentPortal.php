@@ -46,6 +46,11 @@
                                         <input type="hidden" name="doEditDetails" hidden>
                                         <input type="submit" value="Edit Details">
                                     </form>
+
+                                    <form id="editClubDesc" action="populate.php" method="post">
+                                        <input type="hidden" name="doApply" hidden>
+                                        <input type="submit" value="Apply for clubs">
+                                    </form>
                                 </div>
                             </div>
                         </div>

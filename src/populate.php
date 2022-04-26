@@ -52,6 +52,10 @@
                                     $escaped = mysqli_real_escape_string($conn, $user_id);
                                     $domain = "SELECT * FROM club_domain WHERE user_id = '$escaped' ORDER BY domain_offering";
                                     $result2 = mysqli_query($conn, $domain);
+
+                                    $query3 = "SELECT * FROM user WHERE user_id = '$escaped'";
+                                    $result3 = mysqli_query($conn, $query3);
+                                    $type = mysqli_fetch_assoc($result3)['type'];
                                     ?>
 
 
@@ -96,14 +100,25 @@
                                                 <?php
                                                 if (mysqli_num_rows($result3) > 0) {
                                                     ?>
-                                                    <div class="applied" name="apply-club">
-                                                        <input type="submit" value="Applied" name="apply-club" disabled>
+                                                    <div class="sm:flex flex-row">
+                                                        <div class="applied" name="apply-club">
+                                                            <input type="submit" value="Applied" name="apply-club"
+                                                                   disabled>
+                                                        </div>
+                                                        <div class="apply" name="apply-club">
+                                                            <input type="submit" value="<?= $type ?>" disabled>
+                                                        </div>
                                                     </div>
                                                     <?php
                                                 } else {
                                                     ?>
-                                                    <div class="apply" name="apply-club">
-                                                        <input type="submit" value="Apply" name="apply-club">
+                                                    <div class="sm:flex flex-row">
+                                                        <div class="apply" name="apply-club">
+                                                            <input type="submit" value="Apply" name="apply-club">
+                                                        </div>
+                                                        <div class="apply" name="apply-club">
+                                                            <input type="submit" value="<?= $type ?>" disabled>
+                                                        </div>
                                                     </div>
                                                     <?php
                                                 }

@@ -24,7 +24,7 @@
             $result_assoc = mysqli_fetch_assoc($result);
             $type = $result_assoc['type'];
             if ($type == "student") {
-                die(header("Location: populate.php"));
+                die(header("Location: studentPortal.php"));
             } else {
                 die(header("Location: clubportal.php"));
             }
