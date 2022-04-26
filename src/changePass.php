@@ -26,9 +26,9 @@
                     <form action="changePass.php" method="post" role="form">
                         <input type="text" class="input" name="username" id="username" placeholder="Username" required>
                         <br>
-                        <input type="password" class="input" name="password" id="password" placeholder="Password" required>
+                        <input type="password" class="input" name="password" id="password" placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
                         <br>
-                        <input type="password" class="input" name="password-confirm" id="password" placeholder="Confirm Password" required>
+                        <input type="password" class="input" name="password-confirm" id="password" placeholder="Confirm Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"  required>
                         <br>
                         <br>
                         <input type="submit" name="change-submit" id="login-submit" class="login" value="change password">
