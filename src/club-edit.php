@@ -34,15 +34,32 @@
 
         <div class="marginer">
             <?php
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
-
             $conn = mysqli_connect("localhost", "root", "", "my_db");
-
             $username = $_SESSION['username'];
             $username = mysqli_real_escape_string($conn, $username);
             $name = $_SESSION['name'];
             $name = mysqli_real_escape_string($conn, $name);
+
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
+
+            if (isset($_POST['submit'])) {
+                $question1 = $_POST['question1'];
+                $question1 = mysqli_real_escape_string($conn, $question1);
+                $question2 = $_POST['question2'];
+                $question2 = mysqli_real_escape_string($conn, $question2);
+                $question3 = $_POST['question3'];
+                $question3 = mysqli_real_escape_string($conn, $question3);
+
+                $applications_open = isset($_POST['applications_open']) ? 1 : 0;
+
+                $query = "UPDATE clublisting SET question1 = '$question1', question2 = '$question2', question3 = '$question3' WHERE name = '$name'";
+                $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                $query2 = "UPDATE club SET applications_open = '$applications_open' WHERE user_id = '$username'";
+                $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+
+                $success = true;
+            }
 
             $query = "SELECT * FROM club WHERE user_id = '$username'";
             $result = mysqli_query($conn, $query);
@@ -77,20 +94,7 @@
                     </form>
 
                     <?php
-                    if (isset($_POST['submit'])) {
-                        $question1 = $_POST['question1'];
-                        $question1 = mysqli_real_escape_string($conn, $question1);
-                        $question2 = $_POST['question2'];
-                        $question2 = mysqli_real_escape_string($conn, $question2);
-                        $question3 = $_POST['question3'];
-                        $question3 = mysqli_real_escape_string($conn, $question3);
-
-                        $applications_open = isset($_POST['applications_open']) ? 1 : 0;
-
-                        $query = "UPDATE clublisting SET question1 = '$question1', question2 = '$question2', question3 = '$question3' WHERE name = '$name'";
-                        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-                        $query2 = "UPDATE club SET applications_open = '$applications_open' WHERE user_id = '$username'";
-                        $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+                    if (isset($success) && $success) {
                         ?>
                         <div id="editSuccess">
                             <p>Successfully edited the questions!</p>
